@@ -1,9 +1,8 @@
-const express = require('express')
+const express = require('express');
+const server = require('./src/app.js');
 
-const app = express();
-
-const PORT = 5000 ||5000;
-
+const PORT = 5000;
 
 
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+
+server.listen(PORT, () => console.log(`Server running on ${PORT}`));
