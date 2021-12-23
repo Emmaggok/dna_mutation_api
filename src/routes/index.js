@@ -3,3 +3,5 @@ const {dnaMutation} = require('../controllers/dnaController');
 const router = Router();
 
 router.post('/mutation', dnaMutation)
+
+module.exports = router;

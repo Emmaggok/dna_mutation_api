@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const routes = require('./routes/index.js');
 
 const server = express();
 
@@ -17,7 +18,7 @@ server.use(cors())
 
   
 
-//server.use('/', routes);
+server.use('/', routes);
 
 
 

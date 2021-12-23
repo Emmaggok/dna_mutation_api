@@ -2,50 +2,57 @@
 
 async function dnaMutation(req, res) {
     const {dna} = req.body;
-    const result = await hasMutation(dna);
-    res.status(200).json({
-        result
-    });
+    await hasMutation(dna) ? res.status(200).send('200-OK') : res.status(403).send('403-Forbidden');
 }
 
 async function hasMutation(dna) {
     let count = 0;
     let countRows = 0;
-    const rows = dna.length;
-    const indexStop = rows-4;
+    const rowsOrColumns = dna.length;
+    const indexStop = rowsOrColumns-4;
 
 
-    while (count < 2 && countRows < rows) {
+    while (count < 2 && countRows < rowsOrColumns) {
         let indexHor = 0;
+        let AntiIndexHor = rowsOrColumns-1;
+
         while (indexHor <= indexStop && count<2) {
             let theSame4 = dna[countRows][indexHor]+dna[countRows][indexHor]+dna[countRows][indexHor]+dna[countRows][indexHor];
-
-            if (dna[countRows][indexHor].slice(indexHor, indexHor+4) === (theSame4)) {
+            let theSame4Anti = dna[countRows][AntiIndexHor]+dna[countRows][AntiIndexHor]+dna[countRows][AntiIndexHor]+dna[countRows][AntiIndexHor];
+            //console.log(dna[countRows].slice(indexHor, indexHor+4))
+            if (dna[countRows].slice(indexHor, indexHor+4) === (theSame4)) {
+                
                 count = count + 1;
             }
             if (countRows <= indexStop && count<2) {
                 if (dna[countRows][indexHor]+dna[countRows+1][indexHor+1]+dna[countRows+2][indexHor+2]+dna[countRows+3][indexHor+3] === theSame4){
+                    //console.log(dna[countRows][indexHor]+dna[countRows+1][indexHor+1]+dna[countRows+2][indexHor+2]+dna[countRows+3][indexHor+3]);
                     count = count + 1;
                 }
+
+                if (count<2){
+                    if (dna[countRows][AntiIndexHor]+dna[countRows+1][AntiIndexHor-1]+dna[countRows+2][AntiIndexHor-2]+dna[countRows+3][AntiIndexHor-3] === theSame4Anti){
+                        count = count + 1;
+                    }
+                }
+                if (count<2){
+                    if (dna[countRows][indexHor]+dna[countRows+1][indexHor]+dna[countRows+2][indexHor]+dna[countRows+3][indexHor]  === theSame4){
+                        count = count + 1;
+                    }
+                }
             }
+
             indexHor = indexHor + 1;
+            AntiIndexHor = AntiIndexHor - 1;
         }
-        if(countRows <= indexStop && count < 2) {
-            let index = 0;
-            //for (let index = 0; index < rows; index++) {
-            while (index < rows && count<2) {
-                if (dna[countRows][index]+dna[countRows+1][index]+dna[countRows+2][index]+dna[countRows+3]  === dna[countRows][index]+dna[countRows][index]+dna[countRows][index]+dna[countRows][index]){
-                    count = count + 1;
-                }
-                index = index + 1;
-            }
-        }
+
+
 
         countRows = countRows + 1;
     }
 
-    
-    return count >= 2;
+
+    return count >=2;
 }
 
 
