@@ -1,4 +1,4 @@
-/*const mongoose = require('mongoose');
+
 const {dnaModel, statsModel} = require('../Models/models');
 
 
@@ -95,4 +95,4 @@ async function hasMutation(dna) {
 }
 
 
-module.exports = { dnaMutation };*/
+module.exports = { dnaMutation };
