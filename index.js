@@ -1,5 +1,5 @@
 const server = require('./src/app.js');
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 const {statsModel} = require('./src/Models/models.js');
 
 const DB_URL = 'mongodb://localhost:27017/dna_mutations';
@@ -44,7 +44,7 @@ if (statsModel.findById(1) === null) {
 
     );
 }
-
+*/
 //statsModel.create({_id: 1, count_mutations: 0, count_no_mutations: 0});
 
 

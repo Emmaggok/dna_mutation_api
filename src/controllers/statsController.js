@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 const {statsModel} = require('../Models/models.js');
 
 async function statsInfo (req,res,next){
@@ -19,3 +19,4 @@ async function statsInfo (req,res,next){
 
 
 module.exports = {statsInfo};
+*/

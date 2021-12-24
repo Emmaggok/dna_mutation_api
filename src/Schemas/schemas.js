@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose');
+/*const mongoose = require ('mongoose');
 
 
 const dnaSchema = new mongoose.Schema({
@@ -34,4 +34,4 @@ const statsSchema = new mongoose.Schema({
 module.exports = {
     dnaSchema,
     statsSchema
-}
+}*/
