@@ -47,7 +47,7 @@ if (statsModel.findById(1) === null) {
 */
 //statsModel.create({_id: 1, count_mutations: 0, count_no_mutations: 0});
 
-
+const PORT = process.env.PORT || 5000;
 
 
 server.listen(PORT, async () => console.log(`Server running on ${PORT}`));
