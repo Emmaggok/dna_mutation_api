@@ -1,5 +1,5 @@
 
-const {dnaModel, statsModel} = require('../Models/models');
+//const {dnaModel, statsModel} = require('../Models/models');
 
 
 function validDna (dna) {
@@ -32,7 +32,7 @@ async function hasMutation(dna) {
     let countRows = 0;
     const rowsOrColumns = dna.length;
     const indexStop = rowsOrColumns-4;
-    const {count_mutations, count_no_mutations} = await statsModel.findById(1);
+    //const {count_mutations, count_no_mutations} = await statsModel.findById(1);
 
 
     while (count < 2 && countRows < rowsOrColumns) {
