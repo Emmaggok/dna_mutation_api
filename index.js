@@ -10,7 +10,7 @@ const {DB_URL} = process.env;
 const PORT = process.env.PORT || 5000;
 
 // CONNECT TO DB
-async function conection () {
+(async function conection () {
     await mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
     if (err) {
         console.log('********** Error connecting to DB **********');
@@ -18,7 +18,7 @@ async function conection () {
         console.log('********** DB connected **********');
     }
 })
-}
+})();
 
 
 
