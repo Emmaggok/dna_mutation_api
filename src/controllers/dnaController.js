@@ -1,9 +1,28 @@
 
+function validDna (dna) {
+    
+    const letrasValidas = "ATCG";
+
+    function validLetras(letra) {
+        return letrasValidas.includes(letra);
+    }
+
+    return (dna.length !== 0 && Array.isArray(dna) && dna.every((currentValue) => typeof currentValue === 'string') && dna.every((currentValue) => currentValue.length === dna.length) && dna.every(row => row.split("").every(validLetras)))
+}
+
 
 async function dnaMutation(req, res) {
     const {dna} = req.body;
-    await hasMutation(dna) ? res.status(200).send('200-OK') : res.status(403).send('403-Forbidden');
+    
+    if (validDna(dna)) {
+        await hasMutation(dna) ? res.status(200).send('200-OK') : res.status(403).send('403-Forbidden');
+    } else {
+        res.status(400).send('400-Bad Request');
+    }
 }
+
+
+
 
 async function hasMutation(dna) {
     let count = 0;
