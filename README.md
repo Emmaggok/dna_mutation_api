@@ -46,8 +46,11 @@ Start the server
 
 Install dna_mutation_api with npm
 
+It's necessary to have installed NodeJS as well as MongoDB.
+
 ```bash
   cd dna_mutation_api
   npm install
 ```
+
     
