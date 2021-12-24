@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 
 // CONNECT TO DB
 async function conection () {
-    await mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+    await mongoose.connect('mongodb+srv://emmagg:Daenerysgryffindor1599@cluster0.wtzze.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
     if (err) {
         console.log('********** Error connecting to DB **********');
     } else {
