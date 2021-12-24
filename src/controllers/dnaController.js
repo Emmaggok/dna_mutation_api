@@ -1,6 +1,9 @@
+const mongoose = require('mongoose');
+const {dnaModel, statsModel} = require('../Models/models');
+
 
 function validDna (dna) {
-    
+
     const letrasValidas = "ATCG";
 
     function validLetras(letra) {
@@ -29,6 +32,7 @@ async function hasMutation(dna) {
     let countRows = 0;
     const rowsOrColumns = dna.length;
     const indexStop = rowsOrColumns-4;
+    const {count_mutations, count_no_mutations} = await statsModel.findById(1);
 
 
     while (count < 2 && countRows < rowsOrColumns) {
@@ -53,10 +57,10 @@ async function hasMutation(dna) {
                     if (dna[countRows][AntiIndexHor]+dna[countRows+1][AntiIndexHor-1]+dna[countRows+2][AntiIndexHor-2]+dna[countRows+3][AntiIndexHor-3] === theSame4Anti){
                         count = count + 1;
                     }
-                }
-                if (count<2){
-                    if (dna[countRows][indexHor]+dna[countRows+1][indexHor]+dna[countRows+2][indexHor]+dna[countRows+3][indexHor]  === theSame4){
-                        count = count + 1;
+                    if (count<2){
+                        if (dna[countRows][indexHor]+dna[countRows+1][indexHor]+dna[countRows+2][indexHor]+dna[countRows+3][indexHor]  === theSame4){
+                            count = count + 1;
+                        }
                     }
                 }
             }
@@ -70,6 +74,22 @@ async function hasMutation(dna) {
         countRows = countRows + 1;
     }
 
+    const dnaExist = await dnaModel.findOne({dna: dna});
+
+    if (count >= 2 && dnaExist === null) {
+        try{
+            dnaModel.create({dna: dna});
+            await statsModel.findByIdAndUpdate(1, {count_mutations: count_mutations+1});
+        } catch (err) {
+            console.log(err);
+        }
+        } else {
+            if (dnaExist === null) {
+                dnaModel.create({dna: dna});
+                await statsModel.findByIdAndUpdate(1, {count_no_mutations: count_no_mutations+1});
+            }
+        }
+    
 
     return count >=2;
 }
