@@ -1,5 +1,5 @@
 const {Router} = require('express');
-//const {dnaMutation} = require('../controllers/dnaController');
+const {dnaMutation} = require('../controllers/dnaController');
 //const {statsInfo} = require('../controllers/statsController');
 const router = Router();
 
