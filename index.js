@@ -2,7 +2,7 @@ const server = require('./src/app.js');
 const mongoose = require('mongoose');
 const {statsModel} = require('./src/Models/models.js');
 
-const DB_URL = 'mongodb://localhost:27017/dna_mutations'|| process.env.DB_URL;
+const DB_URL = 'mongodb://localhost:27017/dna_mutations';
 
 const PORT = process.env.PORT || 5000;
 
