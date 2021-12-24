@@ -74,6 +74,7 @@ async function hasMutation(dna) {
         countRows = countRows + 1;
     }
 
+    /*
     const dnaExist = await dnaModel.findOne({dna: dna});
 
     if (count >= 2 && dnaExist === null) {
@@ -89,7 +90,7 @@ async function hasMutation(dna) {
                 await statsModel.findByIdAndUpdate(1, {count_no_mutations: count_no_mutations+1});
             }
         }
-    
+    */
 
     return count >=2;
 }
